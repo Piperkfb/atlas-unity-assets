@@ -27,7 +27,7 @@ public class DatabasesManager : EditorWindow
         GUILayout.Label($"Total Potions: {AssetDatabase.FindAssets("t:Potion").Length}");
         GUILayout.Label($"Total Armors: {AssetDatabase.FindAssets("t:Armor").Length}");
         
-
+        
         // Separator
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
@@ -37,5 +37,7 @@ public class DatabasesManager : EditorWindow
         if (GUILayout.Button("Weapon Database")) WeaponDatabase.ShowWindow();
         if (GUILayout.Button("Potion Database")) PotionDatabase.ShowWindow();
         if (GUILayout.Button("Armor Database")) ArmorDatabase.ShowWindow();
+        EditorGUILayout.Space();
+        if (GUILayout.Button("Weapon Creation")) WeaponCreation.ShowWindow();
     }
 }

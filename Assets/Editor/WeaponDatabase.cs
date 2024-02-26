@@ -6,6 +6,11 @@ using UnityEditor;
 public class WeaponDatabase : ItemDatabase<Weapon>
 {
     [MenuItem("Window/Item Manager/Weapon Database")]
+
+//    public override static void OnGUI((Rect position, SerializedProperty property, GUIContent label))
+ //   {
+
+ //   }
     public static void ShowWindow()
     {
         GetWindow<WeaponDatabase>("Weapon Database");
@@ -17,7 +22,10 @@ public class WeaponDatabase : ItemDatabase<Weapon>
 
     protected override void DrawPropertiesSection()
     {
-        throw new System.NotImplementedException();
+        EditorGUI.BeginChangeCheck();
+
+        GUILayout.Label("Properties Section:", EditorStyles.boldLabel);
+
     }
 
     protected override void ExportItemsToCSV()
@@ -29,16 +37,13 @@ public class WeaponDatabase : ItemDatabase<Weapon>
     {
         throw new System.NotImplementedException();
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void DeleteSelectedWeapon()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (selectedItem != null)
+        {
+            AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(selectedItem));
+            selectedItem = null;
+            AssetDatabase.Refresh();
+        }
     }
 }
