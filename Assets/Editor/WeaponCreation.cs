@@ -5,15 +5,32 @@ using UnityEditor;
 
 public class WeaponCreation : BaseItemCreation<Weapon>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float AttackPower;
+    private float AttackSpeed;
+    private float Durability;
+    private float AttackRange;
+    private float CritChance;
 
-    // Update is called once per frame
-    void Update()
+    [MenuItem("Window/Item Manager/Weapon Creation")]
+    public static void ShowWindow()
     {
-        
+        GetWindow<WeaponCreation>("Weapon Creation");
+    }
+    private void OnGUI()
+    {
+        Weapon NewWeapon
+    }
+    private void CreateWeapons()
+    {
+        string SavePath = "Assets/Items/Weapons/";
+        if (!AssetDatabase.IsValidFolder(SavePath))
+            {
+                System.IO.Directory.CreateDirectory(Application.dataPath + SavePath.Substring("Assets".Length));
+                AssetDatabase.Refresh();
+            }
+        string SaveFile = SavePath + itemName + ".asset";
+        AssetDatabase.CreateAsset(newItem, SaveFile);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 }
